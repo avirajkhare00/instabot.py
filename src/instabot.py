@@ -106,7 +106,7 @@ class InstaBot:
 	# Running hours
     bot_running_hour_start = 0
     bot_running_hour_end = 23
-	
+
     def __init__(self, login, password,
                  like_per_day=1000,
                  media_max_like=50,
@@ -135,7 +135,7 @@ class InstaBot:
         self.bot_running_hour_start = bot_running_hour_start
         self.bot_running_hour_end = bot_running_hour_end
 
-	if self.bot_running_hour_end < self.bot_running_hour_start:
+        if self.bot_running_hour_end < self.bot_running_hour_start:
             self.time_in_day = (self.bot_running_hour_end + 24) - self.bot_running_hour_start * 60 * 60
         else:
             self.time_in_day = self.bot_running_hour_end - self.bot_running_hour_start * 60 * 60
@@ -144,7 +144,7 @@ class InstaBot:
         self.like_per_day = like_per_day
         if self.like_per_day != 0:
             self.like_delay = self.time_in_day / self.like_per_day
-	
+
         # Follow
         self.follow_time = follow_time
         self.follow_per_day = follow_per_day
@@ -198,8 +198,8 @@ class InstaBot:
         self.populate_user_blacklist()
         signal.signal(signal.SIGTERM, self.cleanup)
         atexit.register(self.cleanup)
-	
-		
+
+
     def populate_user_blacklist(self):
         for user in self.user_blacklist:
 
@@ -547,7 +547,7 @@ class InstaBot:
                 else:
                     self.write_log(str(self.bot_running_hour_start - now.hour) + ' Hour(s)')
                     time.sleep((self.bot_running_hour_start - now.hour) * 60 * 60)
-	    time.sleep(3)
+        time.sleep(3)
 
     def new_auto_mod_like(self):
         if time.time() > self.next_iteration["Like"] and self.like_per_day != 0 \
